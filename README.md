@@ -2,7 +2,7 @@
 
 Analyze any GitHub README in seconds. Get a score out of 100, a green/red checklist, and ready-made templates for missing sections.
 
-**🔗 Live Demo:** https://swatipandey0001.github.io/readme-doctor/
+**🔗 Live Demo:** https://swatipandey0001.github.io/Readme-doctor/
 
 ## ❗ Problem Statement
 A good README is the first thing people see in a project, but many developers, especially students and beginners, don't know what it should contain. Missing sections like Installation, Usage or License make projects hard to understand, use and contribute to. Checking this manually takes time, and there is no quick, simple feedback tool.
