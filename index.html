@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>README Doctor - Analyze Your GitHub READMEs</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <header class="header">
+            <h1>🏥 README Doctor</h1>
+            <p>Analyze your GitHub README quality and get instant feedback</p>
+        </header>
+
+        <!-- Input Section -->
+        <section class="input-section">
+            <div class="input-group">
+                <input 
+                    type="text" 
+                    id="repoUrl" 
+                    class="repo-input" 
+                    placeholder="Enter GitHub repo URL (e.g., https://github.com/owner/repo)"
+                    autocomplete="off"
+                >
+                <button id="analyzeBtn" class="btn btn-primary">
+                    <span class="btn-text">Analyze</span>
+                    <span class="btn-loader"></span>
+                </button>
+            </div>
+            <p class="input-hint">
+                <strong>Examples:</strong> 
+                <a href="#" class="example-link" data-url="https://github.com/twbs/bootstrap">twbs/bootstrap</a> • 
+                <a href="#" class="example-link" data-url="https://github.com/facebook/react">facebook/react</a> • 
+                <a href="#" class="example-link" data-url="https://github.com/vuejs/vue">vuejs/vue</a>
+            </p>
+        </section>
+
+        <!-- Error Message -->
+        <div id="errorMessage" class="error-message hidden"></div>
+
+        <!-- Results Section (hidden initially) -->
+        <section id="resultsSection" class="results-section hidden">
+            <!-- Score Circle -->
+            <div class="score-container">
+                <div class="score-circle">
+                    <svg viewBox="0 0 120 120" class="progress-ring">
+                        <circle cx="60" cy="60" r="54" class="progress-ring-circle"></circle>
+                    </svg>
+                    <div class="score-text">
+                        <span id="scoreValue" class="score-value">0</span>
+                        <span class="score-label">/100</span>
+                    </div>
+                </div>
+                <h2 id="scoreTitle" class="score-title">Good Work!</h2>
+            </div>
+
+            <!-- Checklist Section -->
+            <section class="checklist-section">
+                <h3>README Components</h3>
+                <div id="checklist" class="checklist"></div>
+            </section>
+
+            <!-- Missing Templates Section -->
+            <section id="templatesSection" class="templates-section hidden">
+                <h3>Add Missing Sections</h3>
+                <div id="templates" class="templates-grid"></div>
+            </section>
+
+            <!-- Repo Info -->
+            <section class="repo-info-section">
+                <p id="repoInfo" class="repo-info"></p>
+            </section>
+
+            <!-- Comparison Section (hidden initially) -->
+            <section id="comparisonSection" class="comparison-section hidden">
+                <div class="comparison-divider">
+                    <h3>📊 Improve Your README</h3>
+                    <p class="comparison-subtitle">Paste an improved version of your README to see how much it scores!</p>
+                </div>
+
+                <div class="comparison-input-group">
+                    <label for="improvedReadme" class="textarea-label">Paste your improved README here:</label>
+                    <textarea 
+                        id="improvedReadme" 
+                        class="improved-readme-textarea"
+                        placeholder="Paste your updated README content here and click Compare to see the improvement..."
+                        rows="8"
+                    ></textarea>
+                    <button id="compareBtn" class="btn btn-success">
+                        <span class="btn-text">Compare Versions</span>
+                    </button>
+                </div>
+
+                <!-- Comparison Results (hidden initially) -->
+                <div id="comparisonResults" class="comparison-results hidden">
+                    <div class="scores-comparison">
+                        <div class="score-before">
+                            <h4>Original Score</h4>
+                            <div class="score-display" id="oldScoreDisplay">0/100</div>
+                        </div>
+
+                        <div class="score-arrow">
+                            <svg viewBox="0 0 100 100" class="arrow-icon">
+                                <path d="M 10 50 L 90 50 M 75 35 L 90 50 L 75 65" stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <div class="score-improvement" id="scoreImprovement">+0</div>
+                        </div>
+
+                        <div class="score-after">
+                            <h4>Improved Score</h4>
+                            <div class="score-display" id="newScoreDisplay">0/100</div>
+                        </div>
+                    </div>
+
+                    <!-- Newly Added Sections -->
+                    <div class="newly-added-section">
+                        <h4>✨ Newly Added Sections:</h4>
+                        <div id="newlySections" class="newly-sections-list">
+                            <p class="no-changes">No new sections added</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+    </div>
+
+    <!-- Template Modal (for previewing templates) -->
+    <div id="templateModal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">Template</h3>
+                <button class="modal-close" id="modalClose">&times;</button>
+            </div>
+            <div class="modal-body">
+                <pre id="modalBody" class="template-code"></pre>
+            </div>
+            <div class="modal-footer">
+                <button id="modalCopyBtn" class="btn btn-primary">Copy to Clipboard</button>
+                <button id="modalCloseBtn" class="btn btn-secondary">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
